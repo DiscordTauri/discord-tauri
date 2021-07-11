@@ -1,0 +1,49 @@
+name: Tauri Build
+
+# Update to match your requirements
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  descriptive-name:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    # See: https://github.com/actions/cache/blob/main/examples.md#node---yarn
+    - name: Get Yarn cache directory
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - name: Use Yarn cache
+      uses: actions/cache@v2
+      id: yarn-cache
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
+
+    # `--prefer-offline` gives cache priority
+    - name: Install dependencies
+      run: yarn install --prefer-offline --frozen-lockfile
+
+    # Ready to run steps that rely on node_modules
+    - name: Tauri Build
+      run: yarn tauri build
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: Build artifacts
+        path: src-tauri/target/release/discord-tauri.exe
