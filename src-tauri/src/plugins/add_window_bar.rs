@@ -9,7 +9,6 @@ use tauri::{plugin::{Plugin}, Params, Window, Invoke};
 use std::thread;
 use std::time::Duration;
 
-// This is needed for the plugin
 pub struct WindowBarPlugin<P: Params> {
   invoke_handler: Box<dyn Fn(Invoke<P>) + Send + Sync>,
 }
@@ -23,23 +22,28 @@ impl<P: Params> WindowBarPlugin<P> {
 }
 
 impl<P: Params> Plugin<P> for WindowBarPlugin<P> {
-  // This is the plugin name.
+  // The plugin name
   fn name(&self) -> &'static str {
     "windowbar"
   }
 
-  // The JS script to evaluate on initialization.
+  // The JS script to evaluate on initialization
   fn initialization_script(&self) -> Option<String> {
     Some(String::from("console.log('[discord-tauri] WindowBar loaded.');"))
   }
 
-  // Callback invoked when a Window is created.
+  // Callback invoked when a Window is created
   fn created(&mut self, window: Window<P>) {
     // Create a new thread so we don't panic while using the window
     std::thread::spawn(move || {
       // Wait for a bit
       thread::sleep(Duration::from_millis(500));
-      // Execute JS code in the window
+      // If the window isn't the main one, return
+      if window.label().to_string() != "main" {
+        return
+      }
+
+      // Execute JS code in the main window
       window.eval(r#"
         // Makes an interval which checks for Discord's HTML
         var checkExist = setInterval(function() {
@@ -66,7 +70,7 @@ impl<P: Params> Plugin<P> for WindowBarPlugin<P> {
     });
   }
 
-  // Extend the invoke handler.
+  // Extend the invoke handler
   fn extend_api(&mut self, message: Invoke<P>) {
     (self.invoke_handler)(message)
   }

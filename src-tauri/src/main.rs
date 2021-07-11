@@ -13,10 +13,10 @@ use plugins::{setup_windows::SetupWindowsPlugin, add_window_bar::WindowBarPlugin
 
 /// This command:
 /// - Shows the splashscreen window, because the user could see a blank window for a second otherwise
-
+/// - Is accessible with `show_splashscreen`
 #[tauri::command]
 fn show_splashscreen(window: tauri::Window) {
-  // Show splashscreen
+  // Show the splashscreen
   if let Some(splashscreen) = window.get_window("splashscreen") {
     splashscreen.show().unwrap();
   }
@@ -28,12 +28,9 @@ fn show_splashscreen(window: tauri::Window) {
 /// - Is accessible with `close_splashscreen`
 #[tauri::command]
 fn close_splashscreen(window: tauri::Window) {
-  // Close splashscreen
-  if let Some(splashscreen) = window.get_window("splashscreen") {
-    splashscreen.close().unwrap();
-  }
-
-  // Show main window
+  // Close the splashscreen
+  window.get_window("splashscreen").unwrap().close().unwrap();
+  // Show the main window
   window.get_window("main").unwrap().show().unwrap();
 }
 

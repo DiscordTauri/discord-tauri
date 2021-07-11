@@ -21,17 +21,17 @@ impl<P: Params> SetupWindowsPlugin<P> {
 }
 
 impl<P: Params> Plugin<P> for SetupWindowsPlugin<P> {
-  // This is the plugin name.
+  // The plugin name
   fn name(&self) -> &'static str {
     "setupwindows"
   }
 
-  // The JS script to evaluate on initialization.
+  // The JS script to evaluate on initialization
   fn initialization_script(&self) -> Option<String> {
     Some(String::from("console.log('[discord-tauri] SetupWindows loaded.');"))
   }
 
-  // Callback invoked when a Window is created.
+  // Callback invoked when a Window is created
   fn created(&mut self, window: Window<P>) {
     // Create a new thread so we don't panic while using the window
     std::thread::spawn(move || {
@@ -50,7 +50,7 @@ impl<P: Params> Plugin<P> for SetupWindowsPlugin<P> {
     });
   }
 
-  // Extend the invoke handler.
+  // Extend the invoke handler
   fn extend_api(&mut self, message: Invoke<P>) {
     (self.invoke_handler)(message)
   }
