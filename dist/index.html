@@ -1,0 +1,14 @@
+<!-- 
+  This file works around to make Tauri inject it's API into the window, allowing to use it
+even after the URL is discord.com! (spent 3 days on this shit lol)
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      // Redirects the window to discord.com
+      window.location.replace('https://discord.com/app');
+    </script>
+  </head>
+</html>
