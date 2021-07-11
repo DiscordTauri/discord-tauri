@@ -41,7 +41,7 @@ fn main() {
 
   // Start Tauri
   tauri::Builder::default()
-    // Register the command
+    // Register the commands
     .invoke_handler(tauri::generate_handler![show_splashscreen, close_splashscreen])
     // Register the plugins
     .plugin(setup_windows_plugin)
