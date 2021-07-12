@@ -6,6 +6,20 @@
 
 ---
 
+# List of features
+- [x] Wrapping of Discord
+- [x] Expandability with Tauri plugins
+- [x] Window Bar
+- [x] Fast AF Loading
+- [ ] Notifications
+- [ ] Window Resizing
+- [ ] File Dropping
+- [ ] Push To Talk
+- [ ] Windows Options
+- [ ] Works on Linux
+
+---
+
 # Contributing
 
 ## Tauri Dependencies
