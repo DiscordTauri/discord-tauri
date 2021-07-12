@@ -76,6 +76,8 @@ fn main() {
             // Set the window as focused, otherwise it would stay in the taskbar
             window.set_focus().unwrap();
           }
+          // Even if the user didn't close the window, it could be minimized; set it as focused
+          window.set_focus().unwrap();
         });
       }
       // If the event is a click to an item
