@@ -3,7 +3,7 @@
 /// IMPORT AS: SetupWindowsPlugin
 /// 
 /// AUTHOR: DrPuc
-/// DOES: It centers and all Tauri windows and maximizes the main window.
+/// DOES: It centers all windows and maximizes the main window.
 
 use tauri::{plugin::{Plugin}, Params, Window, Invoke};
 
