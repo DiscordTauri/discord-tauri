@@ -12,6 +12,7 @@
 - [x] Window Bar
 - [x] Fast AF Loading
 - [x] Desktop Tray
+- [ ] Rich Presence Support
 - [ ] Notifications
 - [ ] Window Resizing
 - [ ] File Dropping
