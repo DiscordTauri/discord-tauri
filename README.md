@@ -11,6 +11,7 @@
 - [x] Expandability with Tauri plugins
 - [x] Window Bar
 - [x] Fast AF Loading
+- [x] Desktop Tray
 - [ ] Notifications
 - [ ] Window Resizing
 - [ ] File Dropping
