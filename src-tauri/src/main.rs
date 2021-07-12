@@ -77,6 +77,7 @@ fn main() {
             window.set_focus().unwrap();
           }
           // Even if the user didn't close the window, it could be minimized; set it as focused
+          window.unminimize().unwrap();
           window.set_focus().unwrap();
         });
       }
