@@ -57,7 +57,7 @@ impl<P: Params> Plugin<P> for WindowBarPlugin<P> {
               // Dragging
               document.getElementById("windowBar").addEventListener("mousedown", window.__TAURI__.window.appWindow.startDragging);
               // Close button
-              document.getElementById("closeBtn").addEventListener("click", window.__TAURI__.window.appWindow.minimize);
+              document.getElementById("closeBtn").addEventListener("click", window.__TAURI__.window.appWindow.hide);
               // Maximize button
               document.getElementById("maxBtn").addEventListener("click", window.__TAURI__.window.appWindow.maximize);
               // Minimize button
