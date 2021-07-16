@@ -32,11 +32,6 @@
     }
   </style>
   <script>
-    // Wait until the window isn't blank, then show it.
-    document.addEventListener('DOMContentLoaded',() => {
-      window.__TAURI__.invoke("show_splashscreen");
-    });
-    
     // Wait 1s, then close the splashscreen window.
     setTimeout(
       function() {

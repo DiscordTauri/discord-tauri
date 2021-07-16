@@ -2,26 +2,21 @@
 name = "discord-tauri"
 version = "0.2.0"
 description = "A Discord wrapper using Tauri"
-authors = ["DrPuc"]
+authors = [ "DrPuc" ]
 license = ""
 repository = ""
 default-run = "discord-tauri"
 edition = "2018"
 build = "src/build.rs"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [build-dependencies]
 tauri-build = { version = "1.0.0-beta.2" }
 
 [dependencies]
 serde_json = "1.0"
-serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.0.0-beta.4", features = ["api-all", "system-tray"] }
+serde = { version = "1.0", features = [ "derive" ] }
+tauri = { version = "1.0.0-beta.5", features = ["api-all", "menu", "system-tray"] }
 
 [features]
 default = [ "custom-protocol" ]
 custom-protocol = [ "tauri/custom-protocol" ]
-
-[patch.crates-io]
-wry = { git = "https://github.com/tauri-apps/wry", rev = "923d3461ce93846af8dd548d4e43ebd0fd6111a3" }

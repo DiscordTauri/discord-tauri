@@ -14,7 +14,7 @@
 - [x] Desktop Tray
 - [ ] Rich Presence Support
 - [ ] Notifications
-- [ ] Window Resizing
+- [x] Window Resizing
 - [ ] File Dropping
 - [ ] Push To Talk
 - [ ] Windows Options

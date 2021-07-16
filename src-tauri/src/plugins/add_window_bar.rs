@@ -5,15 +5,16 @@
 /// AUTHOR: DrPuc
 /// DOES: It waits until Discord loads it's HTML and then injects the Discord window bar into the main window.
 
-use tauri::{plugin::{Plugin}, Params, Window, Invoke};
+use tauri::{plugin::Plugin, Runtime, Window, Invoke};
+
 use std::thread;
 use std::time::Duration;
 
-pub struct WindowBarPlugin<P: Params> {
-  invoke_handler: Box<dyn Fn(Invoke<P>) + Send + Sync>,
+pub struct WindowBarPlugin<R: Runtime> {
+  invoke_handler: Box<dyn Fn(Invoke<R>) + Send + Sync>,
 }
 
-impl<P: Params> WindowBarPlugin<P> {
+impl<R: Runtime> WindowBarPlugin<R> {
   pub fn new() -> Self {
     Self {
       invoke_handler: Box::new(tauri::generate_handler![]),
@@ -21,7 +22,7 @@ impl<P: Params> WindowBarPlugin<P> {
   }
 }
 
-impl<P: Params> Plugin<P> for WindowBarPlugin<P> {
+impl<R: Runtime> Plugin<R> for WindowBarPlugin<R> {
   // The plugin name
   fn name(&self) -> &'static str {
     "windowbar"
@@ -33,7 +34,7 @@ impl<P: Params> Plugin<P> for WindowBarPlugin<P> {
   }
 
   // Callback invoked when a Window is created
-  fn created(&mut self, window: Window<P>) {
+  fn created(&mut self, window: Window<R>) {
     // Create a new thread so we don't panic while using the window
     std::thread::spawn(move || {
       // Wait for a bit
@@ -71,7 +72,7 @@ impl<P: Params> Plugin<P> for WindowBarPlugin<P> {
   }
 
   // Extend the invoke handler
-  fn extend_api(&mut self, message: Invoke<P>) {
+  fn extend_api(&mut self, message: Invoke<R>) {
     (self.invoke_handler)(message)
   }
 }
