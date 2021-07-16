@@ -6,10 +6,12 @@
 mod plugins;
 
 // Tauri imports
-use tauri::{Manager, CustomMenuItem, SystemTrayEvent, SystemTrayMenu, SystemTray};
+use tauri::{Manager, SystemTray, CustomMenuItem, SystemTrayMenu, SystemTrayEvent};
 
 // Plugin imports
-use plugins::{setup_windows::SetupWindowsPlugin, add_window_bar::WindowBarPlugin};
+use plugins::{
+  add_window_bar::WindowBarPlugin,
+};
 
 /// This command:
 /// - Shows the splashscreen window, because the user could see a blank window for a second otherwise
@@ -32,11 +34,12 @@ fn close_splashscreen(window: tauri::Window) {
   window.get_window("splashscreen").unwrap().close().unwrap();
   // Show the main window
   window.get_window("main").unwrap().show().unwrap();
+  // Maximize it
+  window.get_window("main").unwrap().maximize().unwrap();
 }
 
 fn main() {
   // Instance plugins
-  let setup_windows_plugin = SetupWindowsPlugin::new();
   let window_bar_plugin = WindowBarPlugin::new();
 
   // We can't make a separate file for a Desktop Tray yet, so we make it here
@@ -52,7 +55,6 @@ fn main() {
     // Register the commands
     .invoke_handler(tauri::generate_handler![show_splashscreen, close_splashscreen])
     // Register the plugins
-    .plugin(setup_windows_plugin)
     .plugin(window_bar_plugin)
     // Register the desktop tray
     .system_tray(desktop_tray)
@@ -68,17 +70,18 @@ fn main() {
         std::thread::spawn(move || {
           // If the window is hidden, continue
           if !window.is_visible().unwrap() {
-            // Set the window up again
-            window.center().unwrap();
-            window.maximize().unwrap();
             // Re-open the window
             window.show().unwrap();
+            // Set the window up again
+            window.maximize().unwrap();
             // Set the window as focused, otherwise it would stay in the taskbar
             window.set_focus().unwrap();
           }
-          // Even if the user didn't close the window, it could be minimized; set it as focused
-          window.unminimize().unwrap();
-          window.set_focus().unwrap();
+          // Even if the user didn't hide the window, it could be minimized in the taskbar; set it as focused
+          else {
+            window.unminimize().unwrap();
+            window.set_focus().unwrap();
+          }
         });
       }
       // If the event is a click to an item

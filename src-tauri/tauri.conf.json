@@ -57,19 +57,6 @@
     },
     "windows": [
       {
-        "title": "Discord",
-        "width": 940,
-        "height": 500,
-        "resizable": true,
-        "fullscreen": false,
-        "visible": false,
-        "url": "index.html",
-        "label": "main",
-        "maximized": true,
-        "decorations": false,
-        "fileDropEnabled": true
-      },
-      {
         "title": "Loading Discord",
         "width": 300,
         "height": 350,
@@ -77,8 +64,24 @@
         "decorations": false,
         "label": "splashscreen",
         "url": "splashscreen.html",
+        "visible": true,
+        "fileDropEnabled": false,
+        "center": true
+      },
+      {
+        "title": "Discord",
+        "width": 940,
+        "height": 500,
+        "resizable": true,
+        "minWidth": 940,
+        "minHeight": 500,
+        "fullscreen": false,
         "visible": false,
-        "fileDropEnabled": false
+        "url": "index.html",
+        "label": "main",
+        "decorations": false,
+        "fileDropEnabled": true,
+        "center": true
       }
     ],
     "security": {
