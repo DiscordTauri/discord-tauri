@@ -23,3 +23,10 @@ custom-protocol = [ "tauri/custom-protocol" ]
 
 [patch.crates-io]
 wry = { git = "https://github.com/tauri-apps/wry", branch = "fix/cursor-flicker" }
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+incremental = false
+opt-level = "s"
