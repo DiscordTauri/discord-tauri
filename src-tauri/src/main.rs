@@ -6,13 +6,10 @@
 mod plugins;
 
 // Tauri imports
-use tauri::{Manager, SystemTray, CustomMenuItem, SystemTrayMenu, SystemTrayEvent};
+use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu};
 
 // Plugin imports
-use plugins::{
-  add_window_bar::WindowBarPlugin,
-  splashscreen::SplashscreenPlugin,
-};
+use plugins::{add_window_bar::WindowBarPlugin, splashscreen::SplashscreenPlugin};
 
 /// This command:
 /// - Closes the splashscreen window
@@ -20,12 +17,12 @@ use plugins::{
 /// - Is accessible with `close_splashscreen`
 #[tauri::command]
 fn close_splashscreen(window: tauri::Window) {
-    // Close the splashscreen window
-    window.get_window("splashscreen").unwrap().close().unwrap();
-    // Show the main window
-    window.get_window("main").unwrap().show().unwrap();
-    // Maximize it
-    window.get_window("main").unwrap().maximize().unwrap();
+  // Close the splashscreen window
+  window.get_window("splashscreen").unwrap().close().unwrap();
+  // Show the main window
+  window.get_window("main").unwrap().show().unwrap();
+  // Maximize it
+  window.get_window("main").unwrap().maximize().unwrap();
 }
 
 fn main() {
@@ -56,7 +53,11 @@ fn main() {
       // verify that the window is closed and re-open it
       // while setting it up again (Tauri doesn't save
       // the status of hidden windows).
-      SystemTrayEvent::LeftClick {position: _,size: _,..} => {
+      SystemTrayEvent::LeftClick {
+        position: _,
+        size: _,
+        ..
+      } => {
         let window = app.get_window("main").unwrap();
         // Create a new thread so we don't panic while using the window
         std::thread::spawn(move || {
@@ -77,7 +78,7 @@ fn main() {
         });
       }
       // If the event is a click to an item
-      SystemTrayEvent::MenuItemClick {id,..} => {
+      SystemTrayEvent::MenuItemClick { id, .. } => {
         // We compare the name of the item to...
         match id.as_str() {
           // `quit` is the item with the string `Quit Discord`
