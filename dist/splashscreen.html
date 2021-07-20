@@ -31,14 +31,6 @@
       bottom: 45px;
     }
   </style>
-  <script>
-    // Wait 1s, then close the splashscreen window.
-    setTimeout(
-      function() {
-        window.__TAURI__.invoke("close_splashscreen");
-      }
-    , 1000);
-  </script>
   <body oncontextmenu="return false;">
       <div>
       <video width="320" height="240" autoplay muted loop>

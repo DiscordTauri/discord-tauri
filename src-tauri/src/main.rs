@@ -11,18 +11,8 @@ use tauri::{Manager, SystemTray, CustomMenuItem, SystemTrayMenu, SystemTrayEvent
 // Plugin imports
 use plugins::{
   add_window_bar::WindowBarPlugin,
+  splashscreen::SplashscreenPlugin,
 };
-
-/// This command:
-/// - Shows the splashscreen window, because the user could see a blank window for a second otherwise
-/// - Is accessible with `show_splashscreen`
-#[tauri::command]
-fn show_splashscreen(window: tauri::Window) {
-  // Show the splashscreen
-  if let Some(splashscreen) = window.get_window("splashscreen") {
-    splashscreen.show().unwrap();
-  }
-}
 
 /// This command:
 /// - Closes the splashscreen window
@@ -30,16 +20,17 @@ fn show_splashscreen(window: tauri::Window) {
 /// - Is accessible with `close_splashscreen`
 #[tauri::command]
 fn close_splashscreen(window: tauri::Window) {
-  // Close the splashscreen
-  window.get_window("splashscreen").unwrap().close().unwrap();
-  // Show the main window
-  window.get_window("main").unwrap().show().unwrap();
-  // Maximize it
-  window.get_window("main").unwrap().maximize().unwrap();
+    // Close the splashscreen window
+    window.get_window("splashscreen").unwrap().close().unwrap();
+    // Show the main window
+    window.get_window("main").unwrap().show().unwrap();
+    // Maximize it
+    window.get_window("main").unwrap().maximize().unwrap();
 }
 
 fn main() {
   // Instance plugins
+  let splashscreen_plugin = SplashscreenPlugin::new();
   let window_bar_plugin = WindowBarPlugin::new();
 
   // We can't make a separate file for a Desktop Tray yet, so we make it here
@@ -53,8 +44,9 @@ fn main() {
   // Start Tauri
   tauri::Builder::default()
     // Register the commands
-    .invoke_handler(tauri::generate_handler![show_splashscreen, close_splashscreen])
+    .invoke_handler(tauri::generate_handler![close_splashscreen])
     // Register the plugins
+    .plugin(splashscreen_plugin)
     .plugin(window_bar_plugin)
     // Register the desktop tray
     .system_tray(desktop_tray)
