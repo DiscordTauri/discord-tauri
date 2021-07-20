@@ -1,11 +1,10 @@
 /// PLUGIN: ADD WINDOW BAR
 /// NAME: windowbar
 /// IMPORT AS: WindowBarPlugin
-/// 
+///
 /// AUTHOR: DrPuc
 /// DOES: It waits until Discord loads it's HTML and then injects the Discord window bar into the main window.
-
-use tauri::{plugin::Plugin, Runtime, Window, Invoke};
+use tauri::{plugin::Plugin, Invoke, Runtime, Window};
 
 use std::thread;
 use std::time::Duration;
@@ -30,7 +29,9 @@ impl<R: Runtime> Plugin<R> for WindowBarPlugin<R> {
 
   // The JS script to evaluate on initialization
   fn initialization_script(&self) -> Option<String> {
-    Some(String::from("console.log('[discord-tauri] WindowBar loaded.');"))
+    Some(String::from(
+      "console.log('[discord-tauri] WindowBar loaded.');",
+    ))
   }
 
   // Callback invoked when a Window is created
@@ -41,7 +42,7 @@ impl<R: Runtime> Plugin<R> for WindowBarPlugin<R> {
       thread::sleep(Duration::from_millis(500));
       // If the window isn't the main one, return
       if window.label().to_string() != "main" {
-        return
+        return;
       }
 
       // Execute JS code in the main window

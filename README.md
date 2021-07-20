@@ -55,7 +55,7 @@ yarn tauri build
 ```
 
 ## Code style?
-Not yet; you can follow the existing code, though.
+Use `cargo fmt` in `/src-tauri` to use our code style (cough cough, not that we use the default Tauri one)
 
 ---
 
