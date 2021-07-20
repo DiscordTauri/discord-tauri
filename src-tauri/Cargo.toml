@@ -20,3 +20,6 @@ tauri = { version = "1.0.0-beta.5", features = ["api-all", "menu", "system-tray"
 [features]
 default = [ "custom-protocol" ]
 custom-protocol = [ "tauri/custom-protocol" ]
+
+[patch.crates-io]
+wry = { git = "https://github.com/tauri-apps/wry", branch = "fix/cursor-flicker" }
