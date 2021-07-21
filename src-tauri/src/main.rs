@@ -59,23 +59,17 @@ fn main() {
         ..
       } => {
         let window = app.get_window("main").unwrap();
-        // Create a new thread so we don't panic while using the window
-        std::thread::spawn(move || {
-          // If the window is hidden, continue
-          if !window.is_visible().unwrap() {
-            // Re-open the window
-            window.show().unwrap();
-            // Set the window up again
-            window.maximize().unwrap();
-            // Set the window as focused, otherwise it would stay in the taskbar
-            window.set_focus().unwrap();
-          }
-          // Even if the user didn't hide the window, it could be minimized in the taskbar; set it as focused
-          else {
-            window.unminimize().unwrap();
-            window.set_focus().unwrap();
-          }
-        });
+        // If the window is closed
+        if !window.is_visible().unwrap() {
+          // Re-open the window
+          window.show().unwrap();
+          // Maximize it
+          window.maximize().unwrap();
+        }
+        // Even if the window isn't closed, it could be minimized in the taskbar; set it as focused
+        else {
+          window.set_focus().unwrap();
+        }
       }
       // If the event is a click to an item
       SystemTrayEvent::MenuItemClick { id, .. } => {

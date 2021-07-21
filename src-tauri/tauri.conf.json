@@ -80,7 +80,6 @@
         "url": "index.html",
         "label": "main",
         "decorations": false,
-        "fileDropEnabled": true,
         "center": true
       }
     ],
