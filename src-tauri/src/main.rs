@@ -66,7 +66,7 @@ fn main() {
           // Maximize it
           window.maximize().unwrap();
         }
-        // If the user didn't hide the window, it could be minimized in the taskbar; set it as focused
+        // Even if the window isn't closed, it could be minimized in the taskbar; set it as focused
         else {
           window.set_focus().unwrap();
         }
