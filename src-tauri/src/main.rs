@@ -11,20 +11,6 @@ use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu
 // Plugin imports
 use plugins::{add_window_bar::WindowBarPlugin, splashscreen::SplashscreenPlugin};
 
-/// This command:
-/// - Closes the splashscreen window
-/// - Un-hides the main window
-/// - Is accessible with `close_splashscreen`
-#[tauri::command]
-fn close_splashscreen(window: tauri::Window) {
-  // Close the splashscreen window
-  window.get_window("splashscreen").unwrap().close().unwrap();
-  // Show the main window
-  window.get_window("main").unwrap().show().unwrap();
-  // Maximize it
-  window.get_window("main").unwrap().maximize().unwrap();
-}
-
 fn main() {
   // Instance plugins
   let splashscreen_plugin = SplashscreenPlugin::new();
@@ -41,7 +27,7 @@ fn main() {
   // Start Tauri
   tauri::Builder::default()
     // Register the commands
-    .invoke_handler(tauri::generate_handler![close_splashscreen])
+    .invoke_handler(tauri::generate_handler![])
     // Register the plugins
     .plugin(splashscreen_plugin)
     .plugin(window_bar_plugin)

@@ -36,25 +36,21 @@ impl<R: Runtime> Plugin<R> for SplashscreenPlugin<R> {
 
   // Callback invoked when a Window is created
   fn created(&mut self, window: Window<R>) {
-    // Create a new thread so we don't panic while using the window
+    // Create a new thread so we can wait on it
     std::thread::spawn(move || {
-      // If the window isn't the main one, return
-      if window.label().to_string() != "main" {
-        return;
-      }
-
       // Wait 500ms
       sleep(Duration::from_millis(500));
 
-      // Execute JS code in the main window
-      window
-        .eval(
-          r#"
-        // Once the HTML is ready, we call `close_splashscreen`
-        window.__TAURI__.invoke('close_splashscreen');
-      "#,
-        )
-        .unwrap();
+      // Close the splashscreen window
+      if window.label().to_string() == "splashscreen" {
+        window.close().unwrap();
+      }
+
+      // Show and maximize the main window
+      if window.label().to_string() == "main" {
+        window.show().unwrap();
+        window.maximize().unwrap();
+      }
     });
   }
 
