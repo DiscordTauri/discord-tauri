@@ -89,9 +89,9 @@ fn main() {
             // Create a new thread so we can wait on it
             std::thread::spawn(move || {
               // Wait so DtApi can remove patches
-              sleep(Duration::from_millis(200));
+              sleep(Duration::from_millis(100));
               // Exit the process
-              window.eval("window.__TAURI__.process.exit();").unwrap();
+              std::process::exit(0);
             });
           }
           _ => {}
