@@ -39,7 +39,9 @@ impl<R: Runtime> Plugin<R> for SplashscreenPlugin<R> {
     }
 
     // Close the splashscreen window
-    window.get_window("splashscreen").unwrap().close().unwrap();
+    if let Some(splashscreen) = window.get_window("splashscreen") {
+      splashscreen.close().unwrap();
+    }
 
     // Show and maximize the main window
     window.get_window("main").unwrap().show().unwrap();
