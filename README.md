@@ -13,11 +13,11 @@
 - [x] Fast AF Loading
 - [x] Desktop Tray
 - [ ] Rich Presence Support
-- [ ] Notifications
+- [x] Notifications
 - [x] Window Resizing
 - [ ] File Dropping
 - [ ] Push To Talk
-- [ ] Windows Options
+- [ ] Custom Settings
 - [ ] Works on Linux
 
 ---
