@@ -46,7 +46,7 @@ impl<R: Runtime> Plugin<R> for NotificationsPlugin<R> {
       let notificationModule = window.dtapi.webpackModules.findByProps("showNotification");
 
       // Enable notifications
-      notificationModule.setDesktopType(true);
+      notificationModule.setDesktopType("ALL");
   
       // Modify the showNotification function in the module
       // notificationPatch() will remove the patch
