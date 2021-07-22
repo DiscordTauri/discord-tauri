@@ -4,17 +4,31 @@
 )]
 
 mod plugins;
+use std::thread::sleep;
+use std::time::Duration;
+
+#[derive(serde::Serialize)]
+struct Payload {
+  message: String,
+}
 
 // Tauri imports
 use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu};
 
 // Plugin imports
-use plugins::{add_window_bar::WindowBarPlugin, splashscreen::SplashscreenPlugin};
+use plugins::{
+  dt_api::DtApiPlugin, notifications::NotificationsPlugin, splashscreen::SplashscreenPlugin,
+  window_bar::WindowBarPlugin,
+};
 
 fn main() {
   // Instance plugins
   let splashscreen_plugin = SplashscreenPlugin::new();
+  let dtapi_plugin = DtApiPlugin::new();
   let window_bar_plugin = WindowBarPlugin::new();
+
+  // Instance DtApi plugins
+  let notifications_plugin = NotificationsPlugin::new();
 
   // We can't make a separate file for a Desktop Tray yet, so we make it here
   // Create an item of the context menu called `quit` with the string `Quit Discord`
@@ -30,7 +44,10 @@ fn main() {
     .invoke_handler(tauri::generate_handler![])
     // Register the plugins
     .plugin(splashscreen_plugin)
+    .plugin(dtapi_plugin)
     .plugin(window_bar_plugin)
+    // Register the DtApi plugins
+    .plugin(notifications_plugin)
     // Register the desktop tray
     .system_tray(desktop_tray)
     // Add events for the desktop tray
@@ -64,8 +81,18 @@ fn main() {
           // `quit` is the item with the string `Quit Discord`
           // If the user clicks quit, close discord-tauri
           "quit" => {
-            // Exit the process with an error code 0
-            std::process::exit(0);
+            let window = app.get_window("main").unwrap();
+            // Emit DT-Exit to the main window, so DtApi removes patches
+            window
+              .emit("DT-Exit", Payload { message: "".into() })
+              .unwrap();
+            // Create a new thread so we can wait on it
+            std::thread::spawn(move || {
+              // Wait so DtApi can remove patches
+              sleep(Duration::from_millis(200));
+              // Exit the process
+              window.eval("window.__TAURI__.process.exit();").unwrap();
+            });
           }
           _ => {}
         }
