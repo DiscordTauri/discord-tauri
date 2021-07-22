@@ -40,6 +40,8 @@ impl<R: Runtime> Plugin<R> for NotificationsPlugin<R> {
 
     // Make the patch
     let module_code = r#"
+      // Request Tauri permission to use notifications
+      window.__TAURI__.notification.requestPermission();
       // Get the Discord notification module
       let notificationModule = window.dtapi.webpackModules.findByProps("showNotification");
   
