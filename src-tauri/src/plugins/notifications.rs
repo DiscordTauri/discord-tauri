@@ -44,6 +44,9 @@ impl<R: Runtime> Plugin<R> for NotificationsPlugin<R> {
       window.__TAURI__.notification.requestPermission();
       // Get the Discord notification module
       let notificationModule = window.dtapi.webpackModules.findByProps("showNotification");
+
+      // Enable notifications
+      notificationModule.setDesktopType(true);
   
       // Modify the showNotification function in the module
       // notificationPatch() will remove the patch
