@@ -77,8 +77,8 @@ At this point, you can edit the code!
 ```ps
 yarn tauri dev
 ```
-### Build a .exe
-The .exe file will be in /src-tauri/target/release
+### Build a .msi
+The .msi file will be in /src-tauri/target/release/bundle/msi
 ```ps
 yarn tauri build
 ```
