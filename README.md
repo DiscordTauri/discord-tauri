@@ -1,7 +1,7 @@
 <h1 align="center">Discord Tauri</h1>
 
 <p align="center">
-    Discord Tauri is a work in progress Discord wrapper made in [Tauri](https://tauri.studio).
+    Discord Tauri is a work in progress Discord wrapper made in <a href="https://tauri.studio">Tauri</a>.
 </p>
 
 ---
