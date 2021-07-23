@@ -1,7 +1,7 @@
 {
   "package": {
-    "productName": "discord-tauri",
-    "version": "0.2.0"
+    "productName": "Discord Tauri",
+    "version": "0.3.0"
   },
   "build": {
     "distDir": "../dist",
@@ -28,7 +28,7 @@
       "resources": [],
       "externalBin": [],
       "copyright": "",
-      "category": "DeveloperTool",
+      "category": "Social Networking",
       "shortDescription": "",
       "longDescription": "",
       "deb": {
@@ -53,7 +53,9 @@
       "active": false
     },
     "allowlist": {
-      "all": true
+      "notification": {
+        "all": true
+      }
     },
     "windows": [
       {
@@ -69,7 +71,7 @@
         "center": true
       },
       {
-        "title": "Discord",
+        "title": "Discord Tauri",
         "width": 940,
         "height": 500,
         "resizable": true,
