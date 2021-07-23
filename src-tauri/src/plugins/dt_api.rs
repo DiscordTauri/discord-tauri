@@ -27,7 +27,7 @@ impl<R: Runtime> Plugin<R> for DtApiPlugin<R> {
   // The JS script to evaluate on initialization
   fn initialization_script(&self) -> Option<String> {
     Some(String::from(
-      "console.log('[DISCORD-TAURI] DtApi loaded.');",
+      "console.log('[DISCORD-TAURI v0.3] DtApi loaded.');",
     ))
   }
 

@@ -1,10 +1,10 @@
 [package]
 name = "discord-tauri"
-version = "0.2.0"
-description = "A Discord wrapper using Tauri"
+version = "0.3.0"
+description = "Discord, built in Tauri."
 authors = [ "DrPuc" ]
-license = ""
-repository = ""
+license = "GPLv3"
+repository = "https://github.com/DiscordTauri/discord-tauri"
 default-run = "discord-tauri"
 edition = "2018"
 build = "src/build.rs"
@@ -15,7 +15,7 @@ tauri-build = { version = "1.0.0-beta.3" }
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = [ "derive" ] }
-tauri = { version = "1.0.0-beta.5", features = ["api-all", "menu", "system-tray"] }
+tauri = { version = "1.0.0-beta.5", features = ["menu", "notification-all", "system-tray"] }
 reqwest = { version = "0.11.4", features = ["blocking"] }
 
 [features]
