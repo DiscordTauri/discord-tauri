@@ -14,24 +14,31 @@ This project's purpose is to, not only know how Discord would be if it was built
 
 # Benchmarks
 
-Made with the same account, same procedure and in the same system.
+Made with same procedure and in the same system (WINDOWS).
+
 Your results may vary.
+
 If these results are good, they are thanks to Tauri, not because the Discord dev team is bad.
-If these results are bad, well, Tauri is still a good library! Also, good job Discord!
+
+If these results are bad, Tauri is still a great library! Also, good job Discord!
 
 | Detail                         | Discord Tauri | Discord   |
 | ------------------------------ | ------------- | --------- |
 | Installer Size                 | 2.83 MiB      | 67.57 MiB |
 | Installed Size (without Cache) | 20 MiB        | 326 MiB   |
-| Memory Usage                   | 254 MB        | 233 MB    |
+| Max. Memory Usage              | 650 MB        | 630 MB    |
+| Avg. Memory Usage (after load) | 550 MB        | 535 MB    |
+| Min. Memory Usage (after load) | 500 MB        | 490 MB    |
 | Launch Time                    | 5.08s         | 7.41s     |
 
 The following results were obtained with an almost brand new account: 3 servers, 1 friend.
 
-| Detail         | Discord Tauri | Discord   |
-| -------------- | ------------- | --------- |
-| Memory Usage   | 175 MB        | 178 MB    |
-| Launch Time    | 3.06s         | 2.83s     |
+| Detail                         | Discord Tauri | Discord   |
+| ------------------------------ | ------------- | --------- |
+| Max. Memory Usage              | 580 MB        | 640 MB    |
+| Avg. Memory Usage (after load) | 512 MB        | 516 MB    |
+| Min. Memory Usage (after load) | 460 MB        | 450 MB    |
+| Launch Time                    | 3.06s         | 2.83s     |
 
 ---
 
