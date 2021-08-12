@@ -64,7 +64,7 @@ The following results were obtained with an almost brand new account: 3 servers,
 
 First, you will need the dependencies needed for Tauri. If you are on Windows, make sure to install the Microsoft Visual Studio C++ Build Tools and WebView2.
 
-You can see the process depending on your operating system <a href="https://tauri.studio/en/docs/getting-started/intro">here</a>! (Linux doesn't work for now!)
+You can see the process depending on your operating system [here](https://tauri.studio/en/docs/getting-started/intro)! (Linux doesn't work for now!)
 
 ## Prerequisites
 - [Git](https://git-scm.com)
@@ -99,3 +99,9 @@ Use `cargo fmt` in `/src-tauri` to use our code style (cough cough, not that we 
 
 ### What is Discord Tauri?
 It's a Discord wrapper that uses the lightweight library [Tauri](https://tauri.studio). In the current state of development, we are replicating the original Discord client behavior.
+
+### Is this against Discord's ToS?
+Yes. Every Discord mod is against the ToS, altough, it seems like Discord still doesn't care too much about it. Quoting [Wired's article about BetterDiscord](https://www.wired.com/story/betterdiscord-lets-users-mod-chat-app/): "BetterDiscord is not an officially sanctioned app; and likely it breaks Discord’s terms of service, which prohibit modifying Discord. But the software has been installed more than 5.3 million times since 2015, and its developers say they have not seen Discord take action against users for modifying the client".
+
+### Is this project abandoned?
+No. But I'm a student and it's hard to add features and fix bugs while having to do homework. Hopefully I will be able to continue discord-tauri in the winter :)
