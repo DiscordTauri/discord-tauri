@@ -10,12 +10,12 @@ edition = "2018"
 build = "src/build.rs"
 
 [build-dependencies]
-tauri-build = { version = "1.0.0-beta.3" }
+tauri-build = { version = "1.0.0-beta.4" }
 
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = [ "derive" ] }
-tauri = { version = "1.0.0-beta.5", features = ["menu", "notification-all", "system-tray"] }
+tauri = { version = "1.0.0-beta.8", features = ["notification-all", "system-tray"] }
 reqwest = { version = "0.11.4", features = ["blocking"] }
 
 [features]
