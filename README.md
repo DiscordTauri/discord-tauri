@@ -10,7 +10,7 @@
 
 I asked myself, how would Discord be if it was built in Tauri? I could only imagine super low memory usage so I got a PoC working in a week.
 
-This project's purpose is to, not only know how Discord would be if it was built in Tauri; but also learn about Discord inner workings and possibly get more people to know about [Tauri](https://tauri.studio)!
+This project's purpose is to, not only know how Discord would be if it was built in Tauri; but also learn about Discord's inner workings and possibly get more people to know about [Tauri](https://tauri.studio)!
 
 # Benchmarks
 
@@ -84,7 +84,7 @@ At this point, you can edit the code!
 ```ps
 yarn tauri dev
 ```
-### Build a .msi
+### Build a .msi file
 The .msi file will be in /src-tauri/target/release/bundle/msi
 ```ps
 yarn tauri build
@@ -105,3 +105,6 @@ Yes. Every Discord mod is against the ToS, altough, it seems like Discord still 
 
 ### Is this project abandoned?
 No. But I'm a student and it's hard to add features and fix bugs while having to do homework. Hopefully I will be able to continue discord-tauri in the winter :)
+
+### Wait, this isn't that lightweight. What's up with that?
+Well, think of Tauri and Electron as browsers. When you have some app like Discord, that has a lot of images, the RAM usage goes crazy. The only way to create a "really lightweight" Discord client would be to make a native interface in something like Qt.
