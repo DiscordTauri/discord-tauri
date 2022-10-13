@@ -46,7 +46,6 @@ impl<R: Runtime> Plugin<R> for SplashscreenPlugin<R> {
     // Show and maximize the main window
     window.get_window("main").unwrap().show().unwrap();
     window.get_window("main").unwrap().set_focus().unwrap();
-    window.get_window("main").unwrap().maximize().unwrap();
   }
 
   // Extend the invoke handler

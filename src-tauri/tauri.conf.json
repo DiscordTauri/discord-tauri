@@ -72,7 +72,7 @@
       {
         "title": "Discord Tauri",
         "width": 1200,
-        "height": 640,
+        "height": 650,
         "resizable": true,
         "minWidth": 940,
         "minHeight": 500,
