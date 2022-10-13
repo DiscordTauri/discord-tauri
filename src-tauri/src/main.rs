@@ -4,10 +4,9 @@
 )]
 
 mod plugins;
-use std::thread::sleep;
-use std::time::Duration;
+use std::{thread::sleep, time::Duration};
 
-#[derive(serde::Serialize)]
+#[derive(serde::Serialize, Clone)]
 struct Payload {
   message: String,
 }
