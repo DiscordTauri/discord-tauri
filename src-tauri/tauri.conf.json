@@ -58,19 +58,6 @@
     },
     "windows": [
       {
-        "title": "Loading Discord",
-        "width": 300,
-        "height": 350,
-        "resizable": false,
-        "decorations": false,
-        "label": "splashscreen",
-        "url": "splashscreen.html",
-        "fullscreen": false,
-        "visible": true,
-        "fileDropEnabled": false,
-        "center": true
-      },
-      {
         "title": "Discord Tauri",
         "width": 1200,
         "height": 650,

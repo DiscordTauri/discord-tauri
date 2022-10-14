@@ -16,13 +16,12 @@ use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu
 
 // Plugin imports
 use plugins::{
-    dt_api::DtApiPlugin, notifications::NotificationsPlugin, splashscreen::SplashscreenPlugin,
+    dt_api::DtApiPlugin, notifications::NotificationsPlugin,
 };
 
 #[cfg(target_os = "windows")]
 fn main() {
     // Instance plugins
-    let splashscreen_plugin = SplashscreenPlugin::new();
     let dtapi_plugin = DtApiPlugin::new();
 
     // Instance DtApi plugins
@@ -44,10 +43,10 @@ fn main() {
         .setup(|app| {
             let window = app.get_window(&"main").unwrap();
             window_shadows::set_shadow(&window, true).expect("Unsupported platform!");
+            window.show().unwrap();
             Ok(())
         })
         // Register the plugins
-        .plugin(splashscreen_plugin)
         .plugin(dtapi_plugin)
         // Register the DtApi plugins
         .plugin(notifications_plugin)
@@ -107,7 +106,6 @@ fn main() {
 #[cfg(target_os = "linux")]
 fn main() {
     // Instance plugins
-    let splashscreen_plugin = SplashscreenPlugin::new();
     let dtapi_plugin = DtApiPlugin::new();
 
     // Instance DtApi plugins
@@ -126,10 +124,14 @@ fn main() {
         // Register the commands
         .invoke_handler(tauri::generate_handler![])
         // Register the plugins
-        .plugin(splashscreen_plugin)
         .plugin(dtapi_plugin)
         // Register the DtApi plugins
         .plugin(notifications_plugin)
+        .setup(|app| {
+            let window = app.get_window(&"main").unwrap();
+            window.show().unwrap();
+            Ok(())
+        })
         // Register the desktop tray
         .system_tray(desktop_tray)
         // Add events for the desktop tray
