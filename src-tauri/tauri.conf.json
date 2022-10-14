@@ -51,6 +51,7 @@
       "active": false
     },
     "allowlist": {
+      "all": false,
       "notification": {
         "all": true
       }
