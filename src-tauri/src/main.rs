@@ -3,9 +3,6 @@
     windows_subsystem = "windows"
 )]
 
-mod plugins;
-use std::{thread::sleep, time::Duration};
-
 #[derive(serde::Serialize, Clone)]
 struct Payload {
     message: String,
@@ -14,19 +11,8 @@ struct Payload {
 // Tauri imports
 use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu};
 
-// Plugin imports
-use plugins::{
-    dt_api::DtApiPlugin, notifications::NotificationsPlugin,
-};
-
 #[cfg(target_os = "windows")]
 fn main() {
-    // Instance plugins
-    let dtapi_plugin = DtApiPlugin::new();
-
-    // Instance DtApi plugins
-    let notifications_plugin = NotificationsPlugin::new();
-
     // We can't make a separate file for a Desktop Tray yet, so we make it here
     // Create an item of the context menu called `quit` with the string `Quit Discord`
     let quit_item = CustomMenuItem::new("quit".to_string(), "Quit Discord");
@@ -46,10 +32,6 @@ fn main() {
             window.show().unwrap();
             Ok(())
         })
-        // Register the plugins
-        .plugin(dtapi_plugin)
-        // Register the DtApi plugins
-        .plugin(notifications_plugin)
         // Register the desktop tray
         .system_tray(desktop_tray)
         // Add events for the desktop tray
@@ -81,18 +63,7 @@ fn main() {
                     // `quit` is the item with the string `Quit Discord`
                     // If the user clicks quit, close discord-tauri
                     "quit" => {
-                        let window = app.get_window("main").unwrap();
-                        // Emit DT-Exit to the main window, so DtApi removes patches
-                        window
-                            .emit("DT-Exit", Payload { message: "".into() })
-                            .unwrap();
-                        // Create a new thread so we can wait on it
-                        std::thread::spawn(move || {
-                            // Wait so DtApi can remove patches
-                            sleep(Duration::from_millis(100));
-                            // Exit the process
-                            std::process::exit(0);
-                        });
+                        std::process::exit(0);
                     }
                     _ => {}
                 }
@@ -105,12 +76,6 @@ fn main() {
 
 #[cfg(target_os = "linux")]
 fn main() {
-    // Instance plugins
-    let dtapi_plugin = DtApiPlugin::new();
-
-    // Instance DtApi plugins
-    let notifications_plugin = NotificationsPlugin::new();
-
     // We can't make a separate file for a Desktop Tray yet, so we make it here
     // Create an item of the context menu called `quit` with the string `Quit Discord`
     let quit_item = CustomMenuItem::new("quit".to_string(), "Quit Discord");
@@ -123,10 +88,7 @@ fn main() {
     tauri::Builder::default()
         // Register the commands
         .invoke_handler(tauri::generate_handler![])
-        // Register the plugins
-        .plugin(dtapi_plugin)
-        // Register the DtApi plugins
-        .plugin(notifications_plugin)
+        // Show the main window
         .setup(|app| {
             let window = app.get_window(&"main").unwrap();
             window.show().unwrap();
@@ -163,18 +125,7 @@ fn main() {
                     // `quit` is the item with the string `Quit Discord`
                     // If the user clicks quit, close discord-tauri
                     "quit" => {
-                        let window = app.get_window("main").unwrap();
-                        // Emit DT-Exit to the main window, so DtApi removes patches
-                        window
-                            .emit("DT-Exit", Payload { message: "".into() })
-                            .unwrap();
-                        // Create a new thread so we can wait on it
-                        std::thread::spawn(move || {
-                            // Wait so DtApi can remove patches
-                            sleep(Duration::from_millis(100));
-                            // Exit the process
-                            std::process::exit(0);
-                        });
+                        std::process::exit(0);
                     }
                     _ => {}
                 }
