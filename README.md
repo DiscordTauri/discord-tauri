@@ -16,7 +16,7 @@ This project's purpose is to, not only know how Discord would be if it was built
 
 Made with same procedure and in the same system (WINDOWS).
 
-Your results may vary.
+Your results will probably vary, this benchmark was taken years ago.
 
 If these results are good, they are thanks to Tauri, not because the Discord dev team is bad.
 
@@ -45,53 +45,20 @@ The following results were obtained with an almost brand new account: 3 servers,
 # List of features
 - [x] Wrapping of Discord
 - [x] Expandability with Tauri plugins
-- [x] Window Bar
 - [x] Fast AF Loading
 - [x] Desktop Tray
 - [ ] Rich Presence Support
-- [x] Notifications
+- [ ] Notifications
 - [x] Window Resizing
 - [ ] File Dropping
 - [ ] Push To Talk
 - [ ] Custom Settings
-- [ ] Works on Linux
+- [x] Works on Linux
 
 ---
 
-# Contributing
-
-## Tauri Dependencies
-
-First, you will need the dependencies needed for Tauri. If you are on Windows, make sure to install the Microsoft Visual Studio C++ Build Tools and WebView2.
-
-You can see the process depending on your operating system [here](https://tauri.studio/en/docs/getting-started/intro)! (Linux doesn't work for now!)
-
-## Prerequisites
-- [Git](https://git-scm.com)
-- [Node.js](https://nodejs.org/en/) with [yarn](https://yarnpkg.com/getting-started)
-- Command line of your choice
-
-### Clone the repository
-```ps
-git clone https://github.com/DiscordTauri/discord-tauri.git
-```
-### Install the project dependencies
-```ps
-yarn install
-```
-At this point, you can edit the code!
-### Run discord-tauri
-```ps
-yarn tauri dev
-```
-### Build a .msi file
-The .msi file will be in /src-tauri/target/release/bundle/msi
-```ps
-yarn tauri build
-```
-
-## Code style?
-Use `cargo fmt` in `/src-tauri` to use our code style (cough cough, not that we use the default Tauri one)
+# Building
+You can find building instructions on the [wiki](https://github.com/DiscordTauri/discord-tauri/wiki)!
 
 ---
 
@@ -104,7 +71,7 @@ It's a Discord wrapper that uses the lightweight library [Tauri](https://tauri.s
 Yes. Every Discord mod is against the ToS, altough, it seems like Discord still doesn't care too much about it. Quoting [Wired's article about BetterDiscord](https://www.wired.com/story/betterdiscord-lets-users-mod-chat-app/): "BetterDiscord is not an officially sanctioned app; and likely it breaks Discord’s terms of service, which prohibit modifying Discord. But the software has been installed more than 5.3 million times since 2015, and its developers say they have not seen Discord take action against users for modifying the client".
 
 ### Is this project abandoned?
-No. But I'm a student and it's hard to add features and fix bugs while having to do homework. Hopefully I will be able to continue discord-tauri in the winter :)
+No. But I'm a student and it's hard to add features and fix bugs while having to do homework.
 
 ### Wait, this isn't that lightweight. What's up with that?
 Well, think of Tauri and Electron as browsers. When you have some app like Discord, that has a lot of images, the RAM usage goes crazy. The only way to create a "really lightweight" Discord client would be to make a native interface in something like Qt.
