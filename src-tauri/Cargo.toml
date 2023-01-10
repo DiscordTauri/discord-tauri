@@ -9,6 +9,13 @@ default-run = "discord-tauri"
 edition = "2021"
 build = "src/build.rs"
 
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+
 [build-dependencies]
 tauri-build = { version = "1.2.1", features = [] }
 
