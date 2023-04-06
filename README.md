@@ -53,7 +53,7 @@ The following results were obtained with an almost brand new account: 3 servers,
 - [ ] File Dropping
 - [ ] Push To Talk
 - [ ] Custom Settings
-- [x] Works on Linux
+- [x] Works on Linux & MacOS
 
 ---
 

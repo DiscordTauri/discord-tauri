@@ -1,7 +1,7 @@
 {
   "name": "discord-tauri",
   "scripts": {
-    "tauri": "tauri"
+    "serve": "cargo tauri dev"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.2.2"
